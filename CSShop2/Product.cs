@@ -17,13 +17,13 @@ namespace CSShop2
         
 
         //COSTRUTTORE
-        public Product(string productName, int productCode, string productDescription, float productPrice, int taxIva = 22)
+        public Product(string productName, string productDescription, float productPrice, int taxIva = 22)
         {
             this.productName = productName;
             this.productCode = RandomGen();
             this.productDescription = productDescription;
             this.productPrice = productPrice;
-            this.taxIva = taxIva;
+            this.taxIva = 22;
             
         }
 
@@ -140,14 +140,14 @@ namespace CSShop2
         {
             string codeName = FormattedNum() + productName;
             Console.WriteLine("Il tuo prodotto è: ");
-            Console.WriteLine(codeName);
+            Console.WriteLine(codeName + "\n");
         }
 
         public string GetProductString()
         {
             string rapprStr = "Codice prodotto: " + this.productCode + "\n";
             rapprStr += "Nome: " + this.productName + "\n";
-            rapprStr += "Descrizione: " + this.productDescription + " ";
+            rapprStr += "Descrizione: " + this.productDescription + "\n";
             rapprStr += "Prezzo: " + this.productPrice + "\n";
             return rapprStr;
         }

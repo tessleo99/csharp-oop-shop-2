@@ -13,7 +13,7 @@ namespace CSShop2
         private double waterPH;
         private string waterSource;
         //COSTRUTTORE
-        public Water (string productName, int productCode, string productDescription, float productPrice, int taxIva, double waterLiters, string waterSource) : base (productName, productCode, productDescription, productPrice, taxIva)
+        public Water (string productName, string productDescription, float productPrice, double waterLiters, string waterSource) : base (productName, productDescription, productPrice)
         {
             this.waterLiters = waterLiters;
             this.waterPH = 6.5;
@@ -58,28 +58,36 @@ namespace CSShop2
         {
             if (drinkLiters > waterLiters)
             {
-                Console.WriteLine("Non c'è abbastanza acqua nella tua bottiglia");
+                Console.WriteLine("Non c'è abbastanza acqua nella tua bottiglia per dissetarti completamente");
                 waterLiters = 0;
 
-            } 
-            waterLiters -= drinkLiters;  
+            } else
+            {
+                waterLiters -= drinkLiters;
+                Console.WriteLine("Ora hai: " + waterLiters + " Litri");
+            }
+            
             return waterLiters;
         }
 
         public double FillBottle (double fillLiters)
         {
-            if (fillLiters < 1.5)
+            if (fillLiters > 1.5)
             {
                 Console.WriteLine("La tua bottiglia non può contenere così tanta acqua");
                 waterLiters = 1.5;
             }
-            waterLiters += fillLiters;
-            if (waterLiters > 1.5)
+            double fillBottle = waterLiters + fillLiters;
+            if (fillBottle > 1.5)
             {
                 Console.WriteLine("la tua bottiglia sta strabordando!");
                 waterLiters = 1.5;
+            } else
+            {
+                waterLiters += fillLiters; 
+                Console.WriteLine("La tua bottiglia ora ha: " + waterLiters + " Litri");
             }
-            Console.WriteLine("La tua bottiglia ora ha: " + waterLiters + " Litri");
+            
             return waterLiters;
 
         }
@@ -93,9 +101,9 @@ namespace CSShop2
         public override void CodeName()
         {
             base.CodeName();
-            Console.WriteLine("Sorgente: " + this.waterSource + "/n");
-            Console.WriteLine("pH: " + this.waterPH + "/n");
-            Console.WriteLine("Litri: " + this.waterLiters + "/n");
+            Console.WriteLine("Sorgente: " + this.waterSource + "\n");
+            Console.WriteLine("pH: " + this.waterPH + "\n");
+            Console.WriteLine("Litri: " + this.waterLiters + "\n");
         }
     }
 }
